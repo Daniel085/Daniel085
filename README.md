@@ -2,7 +2,7 @@
 
 **Product Manager | AI Systems Architect | Developer Tools**
 
-I design and operate AI systems hands-on — multi-agent pipelines, agentic workflows, and developer tools that multiply team capability. 10+ years shipping API platforms and developer products; currently building with Claude and exploring what "AI-native" product management actually means in practice.
+I design and operate AI systems hands-on — multi-agent pipelines, agentic workflows, and developer tools that multiply team capability. 10+ years shipping API platforms and developer products; currently building with Claude across everything from PM operating systems to OBD diagnostics to on-device ML.
 
 📍 Boise | 💼 [LinkedIn](https://linkedin.com/in/danielororke) | 📧 daniel@ororke.com
 
@@ -10,7 +10,7 @@ I design and operate AI systems hands-on — multi-agent pipelines, agentic work
 
 ## Docs-as-Code — Agentic Engine for OpenAPI → Developer Portals
 
-*Source is private — [architecture and case study available here](https://github.com/Daniel085/docs-as-code-case-study)*
+*Source is private — [live case study: AlianzaDocs](https://github.com/Daniel085/AlianzaDocs)*
 
 A five-loop pipeline that turns a terse OpenAPI spec into a branded developer portal. The core bet: stop trying to fix the LLM — fix the inputs and outputs around it.
 
@@ -20,79 +20,112 @@ A five-loop pipeline that turns a terse OpenAPI spec into a branded developer po
 
 | | |
 |---|---|
-| **Agent roster** | 12 agents across 5 loops; Opus for judgement-critical roles, Sonnet for structured transformations |
+| **Agent roster** | 10 agents across 5 loops; Opus for judgement-critical roles, Sonnet for structured transformations |
 | **Cost** | ~$0.65/op cold full run; ~$1.50 for a typical incremental spec change |
 | **Tests** | 167 Python test functions, 25 Node tests, WCAG A/AA validated via Playwright + axe-core |
 | **Key rule** | No product-specific logic in the engine — every per-product behaviour lives in three config files |
 
-[Read the case study →](https://github.com/Daniel085/docs-as-code-case-study)
+[See it in production: AlianzaDocs →](https://github.com/Daniel085/AlianzaDocs)
 
 ---
 
-## Other Projects
+## Active Projects
 
-### [SocialMediaManager](https://github.com/Daniel085/SocialMediaManager)
-**Human-in-the-loop AI content review pipeline**
+### [MCP](https://github.com/Daniel085/MCP)
+**Base toolkit for building Model Context Protocol servers**
 
-Click CLI frontend + Flask review UI for AI-generated social content. Uses claude-sonnet-4-6 to draft posts; a human reviews and approves before anything publishes. Built to explore where AI augments rather than replaces editorial judgement.
+Parallel TypeScript and Python templates that wrap an existing API and expose it as an MCP server. Ships deployment recipes for Claude Code, Claude Desktop, the Claude API MCP connector, and Docker Compose. Includes a YAML-driven tool-selection eval suite that runs real prompts through the Claude API against any stdio MCP server to confirm the model picks the right tool.
 
-**Tech:** Python, Click, Flask, Claude claude-sonnet-4-6
+**Tech:** Python, TypeScript, Docker, Claude API | **Updated:** October 2026
 
 ---
+
+### [ProductExpert](https://github.com/Daniel085/ProductExpert)
+**PM operating system with evaluation harness**
+
+A system of expert sub-agents organised across three phases — Opportunity Discovery, Problem Validation, Solution Validation. Agents cover the full PM workflow: ODI interviewing, outcome editing, survey building, lean experiments, PR/FAQ, experimentation, and metrics. A `/navigate` skill routes initiatives through gated phases; an evaluation harness ships with 30 routing cases and three gate fixtures.
+
+Absorbs and extends [Product-Discovery-ODI](https://github.com/Daniel085/Product-Discovery-ODI) — the ODI agents are now one phase of a bigger system.
+
+**Tech:** Python, Markdown agent definitions | **Updated:** October 2026
+
+---
+
+### [PrettyGoodManAIger](https://github.com/Daniel085/PrettyGoodManAIger)
+**Ritualised AI assistant for product and design managers**
+
+Three scheduled daily rituals (`/start`, `/sync`, `/wrap-up`) plus pre-meeting prep commands (`/prep-1on1`, `/prep-boss-1on1`). Loads a manage-up canon (Gabarro & Kotter, Cohen & Bradford, Neffinger & Kohut, Annie Duke) and a decision log, and gets sharper the longer you use it. Core design bet: ritualised capture beats willpower.
+
+**Tech:** Markdown skills | **Updated:** September 2026
+
+---
+
+### [OBD_Battery-diagnostics](https://github.com/Daniel085/OBD_Battery-diagnostics)
+**Cross-platform Flutter app for EV/PHEV battery diagnostics**
+
+Connects to a vehicle's OBD-II port via a BLE ELM327 adapter and reads detailed BMS / high-voltage battery data — state of charge, state of health, pack voltage/current, per-cell voltages, module temperatures, cell balancing, cycle count, isolation resistance — then exports a battery health report. Vehicle-specific knowledge lives in JSON signal sets (OBDb v3 schema) rather than code. Primary targets: 2018 BMW 330e and 2025 Cadillac Lyriq. Read-only by design: UDS 0x22/0x19 and J1979 mode 01 only — never writes.
+
+**Tech:** Flutter/Dart, Swift, Kotlin, BLE, UDS/ISO-TP | **Status:** Active, on-vehicle validated | **Tests:** 54 offline tests + demo mode
+
+---
+
+### [Job](https://github.com/Daniel085/Job)
+**Claude Code-driven job search pipeline**
+
+Generates a master `Profile.md` from a resume plus LinkedIn export, discovers postings, fit-scores them with a documented algorithm, and produces per-company tailored resumes and cover letters.
+
+**Tech:** HTML resume templates, Claude Code workflows | **Updated:** October 2026
+
+---
+
+## Other Notable Projects
 
 ### [dadJokeGenerator](https://github.com/Daniel085/dadJokeGenerator) — [Live Demo](https://daniel085.github.io/dadJokeGenerator/)
-**Shipped in under an hour as a new-dad warm-up**
+Three sources: live API (1000+ jokes), local vault (750+), and an **AI Generated mode** running Qwen2.5-1.5B fine-tuned on dad jokes, served on-device via ONNX Runtime Web (WebGPU, ~1.1GB one-time download). Built as a new-dad warm-up; now a real on-device LLM demo.
 
-Dual-mode dad joke generator: live API (1000+ jokes) or local vault (750+), with session-tracked anti-repeat, keyboard shortcuts, and a garage/workshop theme. Vanilla JS, no frameworks.
-
-**Tech:** Vanilla JS, HTML5, CSS3, icanhazdadjoke API | **Status:** ✅ Live
+**Tech:** Vanilla JS, Python (fine-tune pipeline), ONNX Runtime Web, WebGPU | ✅ Live
 
 ---
 
-### [Family Meal Planner](https://github.com/Daniel085/new-project)
-**Next.js 15 meal planner with pluggable LLM abstraction**
+### [Hearth](https://github.com/Daniel085/Hearth)
+Privacy-first iOS relationship assistant using on-device Core ML and Vision. Upgraded from concept to **working prototype** — ~200KB of Swift running on-device. Face clustering and Vision FeaturePrint vs. Core ML face-model tradeoffs documented from real prototype findings.
 
-Generates personalised meal plans via a `LLMProvider` interface that switches cleanly between Claude and OpenAI. Puppeteer-driven Walmart cart automation adds ingredients automatically.
-
-**Tech:** TypeScript, Next.js 15, Anthropic Claude API, Puppeteer
-
----
-
-### [GrocerySelector](https://github.com/Daniel085/GrocerySelector)
-**In-browser AI: Phi-3 + SDXL-Turbo via WebGPU**
-
-Runs Phi-3 (language) and SDXL-Turbo (image generation) entirely in the browser over WebGPU — no server, no API key, no cloud. An exploration of what frontier on-device inference looks like today.
-
-**Tech:** JavaScript, WebGPU, Phi-3, SDXL-Turbo
+**Tech:** Swift, SwiftUI, Core ML, Vision, PhotoKit | **Status:** Prototype phase
 
 ---
 
 ### [iOS-WebRTC-Demo](https://github.com/Daniel085/iOS-WebRTC-Demo)
-**Production-ready native iOS dialer with 12-guide documentation suite**
-
-Full CallKit integration (lock screen calls, CarPlay, Bluetooth), VoIP push notifications, contacts integration, and a complete backend architecture (signaling server, TURN/STUN, DB schema). Built to understand the full stack of a production calling app.
+Native iOS dialer with CallKit, VoIP push, Contacts integration, and a complete Node.js signaling backend. Swift source grew ~40% since May 2026. Ships 14 long-form technical guides.
 
 **Tech:** Swift 5.9+, SwiftUI, GoogleWebRTC, CallKit, PushKit, Node.js, Socket.io, PostgreSQL
 
 ---
 
-### [SampleClickToCall](https://github.com/Daniel085/SampleClickToCall)
-**SIP click-to-call with interface-driven design and real CI**
+### [SocialMediaManager](https://github.com/Daniel085/SocialMediaManager)
+Local pipeline that turns a folder of dog photos into Instagram-ready captioned content. Stages (ingest → dedupe → filter → caption → review) are independently invokable; state is a hand-editable `queue.json`; captions generated via Claude Sonnet against a persona file. Human-in-the-loop approval before anything publishes.
 
-Interface-driven architecture with a `FakeSipClient` for deterministic testing — a deliberate proof-of-concept for engineering rigour habits applied to personal projects.
+**Tech:** Python, Click, Flask, Claude API
 
-**Tech:** SIP, interface-driven testing, CI/CD
+---
+
+### [WorkdayResumeParser](https://github.com/Daniel085/WorkdayResumeParser)
+Chrome extension that parses a resume locally using Chrome's built-in on-device Gemini Nano and auto-fills Workday job applications. No server, no API keys — host permissions limited to `*.myworkdayjobs.com`.
+
+**Tech:** Chrome Manifest V3, JavaScript, Chrome AI (Gemini Nano), PDF.js
+
+---
+
+### [GrocerySelector](https://github.com/Daniel085/GrocerySelector) — [Live Demo](https://daniel085.github.io/GrocerySelector/)
+Browser-based 5-day meal planner running Phi-3-mini entirely on-device via WebLLM (WebGPU). Optimises meals for ingredient reuse and exports a Walmart-compatible grocery list. Optional SDXL-Turbo for recipe images, loaded lazily.
+
+**Tech:** React 19, TypeScript, WebGPU, Phi-3-mini, SDXL-Turbo | ✅ Live
 
 ---
 
 ## Future Projects
 
-### [Hearth](https://github.com/Daniel085/Hearth) — Privacy-First Relationship Assistant
-*Design phase complete, moving to implementation*
-
-iOS app for relationship management with all AI processing on-device via Core ML. No cloud, no data collection. Built around the idea that technology should support intentional connection rather than interrupt it.
-
-**Tech:** Swift, SwiftUI, Core ML, Vision, PhotoKit, EventKit, Core Location
+### [Hearth](https://github.com/Daniel085/Hearth) — Full iOS App
+Prototype is running; next phase is validating face clustering against a real photo library and shipping the communication-rhythm engine.
 
 ---
 
